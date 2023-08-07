@@ -1,0 +1,15 @@
+{
+  "name": "bot-v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./bot.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^21.0.1",
+    "tesseract.js": "^4.1.1"
+  }
+}
