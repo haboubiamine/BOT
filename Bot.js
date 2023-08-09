@@ -11,6 +11,9 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: false,
+    executablePath: '/usr/bin/chromium',
+    args: ['--no-sandbox']
+
   });
   const page = await browser.newPage();
 
