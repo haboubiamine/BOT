@@ -1,0 +1,10 @@
+Betting logic 
+counting loses 
+session expire 
+
+
+
+
+time to spin =
+time to bet =
+time to wait befor start = 
