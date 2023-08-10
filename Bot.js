@@ -1,9 +1,30 @@
 const puppeteer = require('puppeteer');
+const sharp = require("sharp");
 
 (async () => {
 
   const RED_COLORS = [1,2,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]
   const BLACK_COLORS = []
+
+  const START_BUTTON = {
+    'X':1298,
+    'Y':682
+  }
+  const RED_BET = {
+    'X':1010,
+    'Y':353
+  }
+  const SHIP = {
+    'X':807,
+    'Y':675
+  }
+
+  const RESULT_IMAGE = {
+    'X':576,
+    'Y':126
+  }
+
+  
 
   //RESULT_IMAGE
 
@@ -11,15 +32,15 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({
     headless: false,
     defaultViewport: false,
-    // executablePath: '/usr/bin/chromium',
-    args: ['--no-sandbox'],
-    ignoreDefaultArgs: ['--enable-automation']
+   // executablePath: '/usr/bin/chromium',
+    args: ['--no-sandbox','--disable-infobars','--window-size=1920,1080',],
+    ignoreDefaultArgs: ['--enable-automation' , '--disable-extensions']
 
   });
   const page = await browser.newPage();
   page.setDefaultNavigationTimeout(0); 
   // Navigate the page to a URL
-  await page.goto('https://www.grandx.com', {waitUntil: 'load'});
+  await page.goto('https://www.grandx.com/');
 
  
 
@@ -29,24 +50,24 @@ const puppeteer = require('puppeteer');
   let Game = await page.$x('/html/body/div[2]/div[3]/div[1]/section[4]/nav/div/div[173]/a')
   await Game[0].click();
 
+  
   setTimeout(async() => {
-    
-    console.log("SCREENSHOT")
-    await page.screenshot({
-      path : './IMG/RESULT_IMAGE.PNG',
-      clip: {
-        x: 440,
-        y: 115,
-        width: 400,
-        height: 32
-      }
-    });
-  }, 70000);
+    let frame = await page.$('#gameframe');
+    console.log(frame)
+    console.log(await frame.boundingBox())
+    console.log(await frame.clickablePoint())
+
+    await page.mouse.click(786,730)
+  }, 100000);
 
   
-  
+ // Find the iframe
  
 
+ // Find its coordinates
+
+// X = 786
+// Y = 730
   
 
  //await browser.close();
